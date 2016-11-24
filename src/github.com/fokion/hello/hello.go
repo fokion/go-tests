@@ -29,11 +29,6 @@ func multipleReturns(x, y int)(sum , prod int){
   return x + y, x * y
 }
 func setupServer(){
-  //the func  in the HandleFunc is the handler of the request on the endpoint
-  http.HandleFunc("/",func(w http.ResponseWriter,r *http.Request){
-    fmt.Fprintf(w,"hello from server")
-  })
-  fmt.Println(http.ListenAndServe("localhost:8181",nil))
   //the Must will absorb errors and halt execution if it cannot parse the template
     templates := template.Must(template.ParseFiles("templates/index.html"))
     //the func  in the HandleFunc is the handler of the request on the endpoint
@@ -47,5 +42,5 @@ func setupServer(){
         http.Error(w,err.Error(),http.StatusInternalServerError)
       }
     })
-    fmt.Println(http.ListenAndServe("localhost:8181",nil))
+    fmt.Println(http.ListenAndServe(":80",nil))
 }
